@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+.venv/
+
+# IDE
+.idea/
+
+# Rohdaten der Messreihe (tools/sweep.py schreibt sie neben das Skript)
+tools/raw_*.jsonl
+tools/sweep_data.json
+tools/sweep_report.txt
