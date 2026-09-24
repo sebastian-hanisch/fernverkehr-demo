@@ -1,6 +1,6 @@
 # Fernverkehr: Fahrerregeln und Elektro-Lkw – Streamlit-Demo
 
-*(noch nicht deployed)*
+**[→ Demo live ausprobieren](https://sebastianhanisch-fernverkehr-demo.streamlit.app/)**
 
 Interaktive Fall-Demo (Tourenplanung): Ein Lkw fährt mehrere Stopps über hunderte Kilometer, und zwei Pflichten bestimmen den Fahrplan – die **Lenk- und Ruhezeiten der Fahrer** (EU-Verordnung 561/2006, vereinfacht) und, beim
 **Elektro-Lkw**, die **Reichweite** mit **Ladestopps** an festen Ladesäulen. Die Demo beantwortet: **Was kosten beide Pflichten, addieren sich die Kosten – oder helfen sich die Pflichten, weil man die Pflichtpause zum Laden

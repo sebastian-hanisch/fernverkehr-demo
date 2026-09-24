@@ -170,11 +170,12 @@ def test_the_readme_states_the_honest_limits_and_the_neighbours():
     has("erfunden, nicht kalibriert", "Pausen zählen als bezahlte Fahrerzeit", "EU-Regeln vereinfacht", "Weiche Zeitfenster sind eine Modellwahl",
         "Die Tourensuche ist eine Heuristik", "Stafette nicht enthalten", "## Verwandte Demos mit demselben mathematischen Modell",
         "`vrp_demo`", "`linehaul-demo`", "`slow-steaming-demo`", "`leercontainer-demo`", "starr gegen reaktiv",
-        "Stafette und Fahrerdienstplan", "Stand 2026-09-24", "(noch nicht deployed)", "## Reproduktion der Messreihe", "52 Minuten",
+        "Stafette und Fahrerdienstplan", "Stand 2026-09-24", "Demo live ausprobieren", "## Reproduktion der Messreihe", "52 Minuten",
         "## Bewusst nicht umgesetzt", "## Lokal ausführen", "Gebaut mit Streamlit, Plotly und fpdf2.")
     for stripped in ("Energiepreis", "Ladeleistungskurve", "Unbezahlte Pausen als Regler", "Wochenruhe"):
         assert stripped in README
-    assert "streamlit.app" not in README and "8675" not in README                                     # keine Deploy-Adresse, kein Port
+    assert "8675" not in README                                                            # kein lokaler Port
+    assert "https://sebastianhanisch-fernverkehr-demo.streamlit.app/" in README                  # Live-Link der Website
 
 
 def test_readme_uses_proper_umlauts():
