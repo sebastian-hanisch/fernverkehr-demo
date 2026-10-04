@@ -160,7 +160,7 @@ st.caption(f"Die Fahrerzeit ist unteradditiv (Überlappung von Pause und Laden; 
 st.markdown("**4 · Fest oder neu geplant** – die Touren müssen sich an die Regeln anpassen")
 _fix_i, _new_i = R.stat_fix(DATA, "basis"), R.stat(DATA, "basis")
 _fix_l, _new_l = R.stat_fix(DATA, "live10"), R.stat(DATA, "live10")
-st.info(f"Wer die regelfreien Touren nur unter den Regeln neu bewertet, statt neu zu planen, überschätzt die Wechselwirkung mit Zeitfenstern mehr als doppelt: "
+st.info(f"Wer die regelfreien Touren nur unter den Regeln neu bewertet, statt neu zu planen, überschätzt die Wechselwirkung mit Zeitfenstern im Kernfall mehr als doppelt (2,4-fach), bei 10 Kunden etwa doppelt (2,0-fach): "
         f"18 Kunden, 3 Lkw: I = {UI.fmt_band(_fix_i)} bei festen Touren gegen {UI.fmt_band(_new_i)} bei neu geplanten; 10 Kunden, 2 Lkw: {UI.fmt_band(_fix_l)} "
         f"gegen {UI.fmt_band(_new_l)}. Die Tabelle steht im Expander unten (Tab „Fest oder neu geplant“), dort mit der Live-Instanz.")
 
@@ -278,7 +278,7 @@ Relocate, Swap, 2-opt, 2-opt* und eine kleine ILS – alles mit dem Evaluator de
 Zustände mit einer Schwelle von {C.THRESHOLD_PCT:.0f} % der regelfreien Kosten, abgeleitet aus dem Suchrauschen: darunter „praktisch additiv“.
 
 **Warum die Touren mitplanen müssen.** Die Tourensuche passt Kundenreihenfolge und Zuordnung an die Regeln an. Nur so misst man den Preis der Regeln; wer die regelfreien Touren bloß nachbewertet, überschätzt die Wechselwirkung mit Zeitfenstern
-mehr als doppelt (Kernabschnitt, Punkt 4).
+im Kernfall (18 Kunden, 3 Lkw) mehr als doppelt, bei 10 Kunden, 2 Lkw etwa doppelt (Kernabschnitt, Punkt 4).
 
 **Warum Live-Instanz und Messreihe nebeneinanderstehen.** Eine einzelne kleine Instanz streut: das Vorzeichen der Wechselwirkung kippt von Instanz zu Instanz (Anteil der Instanzen mit I < 0 in der Tabelle). Live macht die Fahrpläne anfassbar
 (Halteliste, Zeitstrahl), die Mittelwerte über 60 Instanzen tragen die Aussage. Deshalb nennt die Meldung beides.
