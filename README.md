@@ -220,3 +220,5 @@ Tests: `python -m pytest tests/ -v`. Volles Bau-Gate: `python tools/check_full.p
 ---
 
 Gebaut mit Streamlit, Plotly und fpdf2.
+
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zum Thema: [Tourenplanung optimieren](https://sebastianhanisch.net/tourenplanung-optimierung.html).
