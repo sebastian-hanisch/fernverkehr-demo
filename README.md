@@ -120,7 +120,7 @@ Verschiedene Themen im Portfolio teilen (fast) dasselbe Modell. Vor einer neuen 
 
 ## Tests
 
-`python -m pytest tests/ -v` – 542 Tests, rund 3 bis 4 Minuten (davon etwa eine Minute die Modell-Checks und etwa eine Minute AppTests). Zusammensetzung:
+`python -m pytest tests/ -v` – 548 Tests, rund 3 bis 4 Minuten (davon etwa eine Minute die Modell-Checks und etwa eine Minute AppTests). Zusammensetzung:
 
 - **Korrektheit des Fahrplan-Modells** (`test_checks.py`, Helfer `tests/fv_checks.py`): alle Checks aus `messreihe_fernverkehr/check.py` in verkleinerter Fassung – alle Regeln aus == Bewertung der `vrp_demo`; Fahrplan-DP == unabhängiger
   Tick-Simulator mit Plan-Enumeration (Brute-Force, nie schlechter, gleich); Fahrplan-Validator (Lenkzeiten, Akku, Pausen- und Ruhelänge, Zeitlinie lückenlos, Kosten aus Ereignissen == Evaluatorkosten); jeder Schalter greift;
