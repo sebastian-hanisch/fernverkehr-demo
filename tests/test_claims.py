@@ -73,7 +73,7 @@ def test_the_sign_depends_on_the_charging_time():
     has("+11,3 ± 1,2 / +7,9 ± 1,0 / +3,9 ± 1,4 %")
     assert [UI.fmt_band(s, 1) for s in free] == ["+1,6 ± 0,3 %", "-0,9 ± 0,3 %", "-4,8 ± 0,3 %"]
     assert [UI.fmt_band(s, 1) for s in win] == ["+11,3 ± 1,2 %", "+7,9 ± 1,0 %", "+3,9 ± 1,4 %"]
-    assert free[0].mean > 0 > free[2].mean and win[0].mean > win[1].mean > win[2].mean          # Reihenfolge kehrt sich um
+    assert free[0].mean > 0 > free[2].mean and win[0].mean > win[1].mean > win[2].mean          # dieselbe Richtung, aber positiv
     assert R.stat(DATA, "kein_fenster_lade90").neg_share == 1.0 and "in 100 % der Instanzen I < 0" in README
 
 

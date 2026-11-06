@@ -84,7 +84,7 @@ def test_skeleton_and_footer():
     assert len(at.title) == 1 and "Fernverkehr" in at.title[0].value
     assert any(v.value.startswith("## 🚛 Was kosten Fahrerregeln und Elektro-Lkw") for v in at.markdown)
     assert any(v.value.startswith("### 📐 Was die Messreihe über 60 Instanzen zeigt") for v in at.markdown)
-    assert [e.label for e in at.expander] == ["🔧 Wie wir das erreichen – Fahrplan-Evaluator und Tourensuche",
+    assert [e.label for e in at.expander] == ["💬 In einfachen Worten", "🔧 Wie wir das erreichen – Fahrplan-Evaluator und Tourensuche",
                                               "Wie funktioniert diese Demo?", "📐 Mathematische Formulierung"]
     assert any(c.value == FOOTER for c in at.caption)
     presets = [b.label for b in at.button if b.label in C.PRESETS]
@@ -137,12 +137,12 @@ def test_pdf_download_button_is_offered():
 
 def test_texts_state_the_model_the_honest_limits_and_the_neighbours():
     at = fresh()
-    text = "\n".join(m.value for m in at.expander[1].markdown)
+    text = "\n".join(m.value for m in at.expander[2].markdown)
     for needle in ("vrp_demo", "Zeitfenster", "Fahrerregeln (F)", "Elektro (E)", "erfunden, nicht kalibriert", "Fahrplan-Evaluator", "Tourensuche",
                    "Wechselwirkung", "Heuristik", "Stark stilisiert", "bezahlte Fahrerzeit", "EU-Regeln vereinfacht", "Weiche Zeitfenster",
                    "Stafette", "Ausgeschlossene Lagen", "mehr als doppelt"):
         assert needle in text, needle
-    math_text = "\n".join(m.value for m in at.expander[2].markdown)
+    math_text = "\n".join(m.value for m in at.expander[3].markdown)
     for needle in ("Label-Setting", "Tourenproblem", "Wechselwirkung", "2\\,\\text{SE}", "fv_evaluator.py", "fv_live.py"):
         assert needle in math_text, needle
     intro = at.markdown[0].value
@@ -153,7 +153,7 @@ def test_texts_state_the_model_the_honest_limits_and_the_neighbours():
 def test_model_constants_in_the_texts_come_from_the_parameters():
     from fv_model import Cfg
     c = Cfg()
-    text = "\n".join(m.value for m in fresh().expander[1].markdown)
+    text = "\n".join(m.value for m in fresh().expander[2].markdown)
     for needle in (f"{c.c_km:.2f} EUR je km", f"{c.c_drv:.0f} EUR je Stunde bezahlte Fahrerzeit", f"{c.c_night:.0f} EUR je Tagesruhe",
                    f"{c.c_late:.0f} EUR je Stunde Verspätung", f"{c.speed:.0f} km/h", "12 feste Ladesäulen"):
         assert needle in text, needle

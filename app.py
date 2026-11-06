@@ -46,6 +46,17 @@ das Basismodell (CVRP mit Zeitfenstern). Wie das Modell funktioniert, steht im E
 """
 )
 
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/lenkzeiten-elektro-lkw-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Ein Lkw beliefert mehrere Kunden über viele Kilometer. Zwei Pflichten bestimmen seinen Fahrplan: Der Fahrer darf nur begrenzt am Stück lenken und muss ruhen, und ein Elektro-Lkw muss an festen Ladesäulen laden. Naheliegend wäre, die Pflichtpause zum Laden zu nutzen, sodass beides zusammen billiger wird als die Summe der Einzelkosten. Die Demo plant dieselbe Aufgabe in vier Varianten: ohne Regeln, mit Fahrerregeln, als Elektro-Lkw und mit beidem. Die **Wechselwirkung** misst, ob sich die Mehrkosten einfach addieren, ob sich die Pflichten helfen oder ob sie sich stören. Das Ergebnis hängt von der Ladezeit und von den Zeitfenstern der Kunden ab. Vorgerechnete Messreihen tragen die Aussage, denn eine einzelne kleine Instanz streut stark. Alle Kostenwerte sind erfunden.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/lenkzeiten-elektro-lkw-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
+
 st.caption("🎯 Schnellstart – ein Beispielszenario laden:")
 preset_names = list(C.PRESETS)
 for row in (preset_names[:3], preset_names[3:]):
@@ -297,6 +308,27 @@ im Kernfall (18 Kunden, 3 Lkw) mehr als doppelt, bei 10 Kunden, 2 Lkw etwa doppe
     )
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/lenkzeiten-elektro-lkw-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben sind Kunden mit Bedarf und weichen Zeitfenstern, ein Depot, Lkw gleicher Kapazität, die Lenk- und Ruhezeitregeln der Fahrer und für den Elektro-Lkw eine Reichweite mit festen Ladesäulen. Gesucht sind Zuordnung und Reihenfolge der Kunden mit einem kostenoptimalen Fahrplan je Tour und daraus die Wechselwirkung der beiden Regelwerke.
+
+| Symbol | Bedeutung |
+|---|---|
+| $r$ | Tour eines Lkw: Depot, Kunden in Reihenfolge, Depot |
+| $d_c$, $d_s$ | Lenkzeit seit der letzten Pause bzw. in der laufenden Schicht (in Minuten) |
+| $b$, $R$ | Akkustand bzw. Reichweite bei vollem Akku (in km) |
+| $h_F$, $h_V$ | bezahlte Fahrerstunden (ohne Tagesruhe) bzw. Fahrzeugstunden (auch Stillstand) |
+| $N$ | Zahl der Tagesruhen; in der Formel für den Standardfehler: Zahl der gepaarten Instanzen |
+| $L$ | Verspätungsstunden, Summe über die Stopps |
+| $C_\emptyset$, $C_F$, $C_E$, $C_{FE}$ | Kosten einer Instanz ohne Regeln, mit Fahrerregeln, als Elektro-Lkw, mit beidem |
+| $I$, $I_\%$ | Wechselwirkung in EUR bzw. in Prozent der regelfreien Kosten; unter 0: die Kombination ist billiger als die Summe der Einzelkosten |
+| $\bar I$, $\text{SE}$ | Mittel der Wechselwirkung über gepaarte Instanzen und sein Standardfehler |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/lenkzeiten-elektro-lkw-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Tour und Fahrplan.** Eine Tour ist $r = (0, c_1, \dots, c_m, 0)$ mit Depot $0$. Ein Fahrplan zerlegt sie in Fahrt, Service, Warten, Pause, Laden und Tagesruhe. Zulässig ist er, wenn die Lenkzeit seit der letzten Pause höchstens $270$ min beträgt,
