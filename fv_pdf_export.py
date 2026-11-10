@@ -148,7 +148,7 @@ def generate_fv_pdf(settings, res, cell, x, message, series_rows, compress=True)
         "frischem Fahrer. Lenk- und Ruhezeiten (EU 561/2006) sind vereinfacht: 45 min Pause nach 4,5 h, 11 h Ruhe nach 9 h Lenkzeit.",
         "Die Kostenparameter sind erfunden, nicht kalibriert (0,70 EUR/km, 32 EUR/h Fahrer, 15 EUR/h Fahrzeug, 100 EUR je Tagesruhe, "
         "40 EUR/h Verspätung): Prozentwerte sind Größenordnungen, keine Euro-Aussagen. Pausen zählen als bezahlte Fahrerzeit.",
-        "Eine einzelne Instanz streut stark; die Aussage über die Wechselwirkung tragen die vorgerechneten Messreihen "
+        "Eine einzelne Instanz streut stark; die Aussage über die Wechselwirkung belegen die vorgerechneten Messreihen "
         "(60 gepaarte Instanzen je Größe, ein Urteil gilt nur ab 2 Standardfehlern).",
     ]:
         pdf.multi_cell(0, 5, pdf_text("- " + text), new_x=XPos.LMARGIN, new_y=YPos.NEXT)

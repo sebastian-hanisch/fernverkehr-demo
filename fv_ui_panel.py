@@ -79,7 +79,7 @@ def render_metrics(columns, res):
         "Wechselwirkung I", fmt_pct(x["I_pct"], signed=True), delta=fmt_eur(x["I_eur"], signed=True), delta_color="inverse",
         help="I = Kosten(F+E) − Kosten(F) − Kosten(E) + Kosten(ohne Regeln), in % der regelfreien Kosten (darunter in EUR). Negativ: die "
              "Kombination ist billiger als die Summe der Einzelkosten (Pause und Laden helfen sich), positiv: teurer. Eine einzelne "
-             "Instanz streut stark - die Messreihe unten trägt die Aussage.")
+             "Instanz streut stark - die Messreihe unten belegt die Aussage.")
     return x
 
 

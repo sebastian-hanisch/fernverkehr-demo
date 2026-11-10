@@ -5,7 +5,7 @@ Sebastian Hanisch - Operations Research und Machine Learning
 Erweiterung der Tourenplanungs-Demo (vrp_demo): Das Basismodell (CVRP mit Zeitfenstern) bleibt, neu ist eine Ressourcenschicht
 entlang der Route (Lenkzeit-Zähler, Akkustand), die aus jeder Stoppfolge einen Fahrplan mit Pausen, Ruhezeiten und Ladestopps macht.
 Live: eine kleine Instanz (6 bis 12 Kunden, 2 Lkw), immer vier Zellen gerechnet (ohne Regeln, Fahrerregeln, Elektro, beides).
-Vorgerechnet: die Messreihe über je 60 gepaarte Instanzen (data/fv_results.json), die die Aussage über die Wechselwirkung trägt.
+Vorgerechnet: die Messreihe über je 60 gepaarte Instanzen (data/fv_results.json), die die Aussage über die Wechselwirkung belegt.
 
 Lauffähig mit: streamlit run app.py
 """
@@ -102,7 +102,7 @@ with st.spinner(f"Rechne die vier Fahrpläne für {customers} Kunden … (auf di
 st.markdown("## 🚛 Was kosten Fahrerregeln und Elektro-Lkw – und addieren sich die Kosten?")
 st.caption(f"Live-Instanz: {res['n']} Kunden, {res['K']} Lkw, davon {res['tw_count']} mit Zeitfenster (Zeitfenster {window}), Ladezeit {charge} min, "
            f"Reichweite {range_km} km, Instanz Nr. {seed} (Seed {res['seed']}). Vier Fahrpläne gerechnet in {UI.fmt_num(res['seconds'])} s: ohne Regeln, "
-           "Fahrerregeln (F), Elektro (E) und beides (F+E). Eine einzelne Instanz – die vorgerechnete Messreihe unten trägt die Aussage.")
+           "Fahrerregeln (F), Elektro (E) und beides (F+E). Eine einzelne Instanz – die vorgerechnete Messreihe unten belegt die Aussage.")
 
 metric_rows = [st.columns(2), st.columns(2)]
 x = UI.render_metrics(metric_rows[0] + metric_rows[1], res)
@@ -292,7 +292,7 @@ Zustände mit einer Schwelle von {C.THRESHOLD_PCT:.0f} % der regelfreien Kosten,
 im Kernfall (18 Kunden, 3 Lkw) mehr als doppelt, bei 10 Kunden, 2 Lkw etwa doppelt (Kernabschnitt, Punkt 4).
 
 **Warum Live-Instanz und Messreihe nebeneinanderstehen.** Eine einzelne kleine Instanz streut: das Vorzeichen der Wechselwirkung kippt von Instanz zu Instanz (Anteil der Instanzen mit I < 0 in der Tabelle). Live macht die Fahrpläne anfassbar
-(Halteliste, Zeitstrahl), die Mittelwerte über 60 Instanzen tragen die Aussage. Deshalb nennt die Meldung beides.
+(Halteliste, Zeitstrahl), die Mittelwerte über 60 Instanzen belegen die Aussage. Deshalb nennt die Meldung beides.
 
 **Grenzen dieses Modells** (bewusst so gewählt, damit die Aussage ehrlich bleibt):
 

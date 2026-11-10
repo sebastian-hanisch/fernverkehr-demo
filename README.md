@@ -5,7 +5,7 @@
 Interaktive Fall-Demo (Tourenplanung): Ein Lkw fährt mehrere Stopps über hunderte Kilometer, und zwei Pflichten bestimmen den Fahrplan – die **Lenk- und Ruhezeiten der Fahrer** (EU-Verordnung 561/2006, vereinfacht) und, beim
 **Elektro-Lkw**, die **Reichweite** mit **Ladestopps** an festen Ladesäulen. Die Demo beantwortet: **Was kosten beide Pflichten, addieren sich die Kosten – oder helfen sich die Pflichten, weil man die Pflichtpause zum Laden
 nutzen kann?** Live auf einer kleinen Instanz (6 bis 12 Kunden, 2 Lkw, immer vier Fahrpläne: ohne Regeln, Fahrerregeln, Elektro, beides) mit Karte, Halteliste und Zeitstrahl, und **vorgerechnet** über je 60 gepaarte
-Instanzen, die die Aussage tragen.
+Instanzen, die die Aussage belegen.
 
 Teil des Portfolios für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. **Erweiterung der Tourenplanungs-Demo** (`vrp_demo`): das Basismodell (CVRP mit Zeitfenstern) bleibt, neu ist eine
 **Ressourcenschicht entlang der Route** (Lenkzeit-Zähler, Akkustand), die aus jeder Stoppfolge einen Fahrplan mit Pausen, Ruhezeiten und Ladestopps macht. Die Geschwindigkeitswahl (`slow-steaming-demo`) und der
@@ -77,7 +77,7 @@ regelfreien Kosten, gepaart je Instanz; 18/3 bedeutet 18 Kunden und 3 Lkw (60 In
 | Hängt das Vorzeichen an der Ladezeit? | Ohne Fenster (typische Ladung 20 / 45 / 90 min): I = +1,6 ± 0,3 / −0,9 ± 0,3 / **−4,8 ± 0,3 %** (bei 90 min in 100 % der Instanzen I < 0). Mit Fenstern fallen die Werte in derselben Richtung, bleiben aber positiv (auch bei 90 min): +11,3 ± 1,2 / +7,9 ± 1,0 / +3,9 ± 1,4 % | `::test_the_sign_depends_on_the_charging_time` |
 | Und an der Reichweite (mit Fenstern)? | 600 / 400 / 300 km: I = +2,7 ± 0,5 / +7,9 ± 1,0 / **+18,0 ± 2,0 %** (bei 300 km nur 28 von 40 Lagen auswertbar, eher zu optimistisch) | `::test_range_amplifies_the_effect` |
 | Zeitfenster und Flottengröße? | Zeitfenster locker / mittel / eng: +3,1 ± 0,8 / +7,9 ± 1,0 / +10,1 ± 1,6 %; 2 / 3 / 4 Lkw (12 / 18 / 24 Kunden): +4,3 ± 1,2 / +7,9 ± 1,0 / +6,0 ± 1,0 %; Fenster nach einem Regelplan kalibriert: +12,8 ± 0,9 % | `::test_window_tightness_fleet_size_and_calibration` |
-| Trägt das auf die Live-Größe (10/2)? | Ja, dasselbe Muster: ohne Fenster −1,5 ± 0,4 %, mit Fenstern +6,4 ± 1,2 %; Ladezeit 20 / 90 min ohne Fenster +1,4 ± 0,5 / −5,5 ± 0,5 %; Reichweite 600 / 400 / 300 km +3,0 ± 0,8 / +5,3 ± 1,2 / +12,6 ± 2,7 % (29 von 40 Lagen) | `::test_the_pattern_carries_to_the_live_size` |
+| Gilt das auch für die Live-Größe (10/2)? | Ja, dasselbe Muster: ohne Fenster −1,5 ± 0,4 %, mit Fenstern +6,4 ± 1,2 %; Ladezeit 20 / 90 min ohne Fenster +1,4 ± 0,5 / −5,5 ± 0,5 %; Reichweite 600 / 400 / 300 km +3,0 ± 0,8 / +5,3 ± 1,2 / +12,6 ± 2,7 % (29 von 40 Lagen) | `::test_the_pattern_carries_to_the_live_size` |
 | Ändern unbezahlte Pausen das Vorzeichen? | Nein. Ohne Fenster wird I stärker unteradditiv (−2,9 ± 0,3 statt −0,9 %), mit Fenstern schwächer überadditiv (+5,5 ± 1,0 statt +7,9 %); die Ladezeit-Umkehr bleibt (90 min: −7,0 ± 0,3 %, 20 min: +0,5 ± 0,3 %, dort nicht mehr von 0 unterscheidbar) | `::test_unpaid_pauses_keep_the_sign` |
 | Wie stark hängt es an der Verspätungsstrafe? | 20 / 40 / 80 EUR/h (je 40 Instanzen, mit Fenstern): I = +4,6 ± 0,7 / +8,4 ± 1,2 / +16,4 ± 2,2 % – fast linear in der Strafe; die Betriebskosten allein bleiben klein (höchstens 2 %). Das Vorzeichen hängt nicht an der Strafe, die Größe schon | `::test_the_penalty_scales_the_size_not_the_sign` |
 | Kann man alte Touren einfach nachbewerten? | Nein: mit Zeitfenstern ergibt die Nachbewertung der regelfreien Touren I = +18,9 ± 1,4 % statt +7,9 ± 1,0 % (10/2: +12,8 ± 1,5 statt +6,4 ± 1,2 %): die Wechselwirkung wird im Kernfall mehr als doppelt (2,4-fach), bei 10/2 etwa doppelt (2,0-fach) überschätzt | `::test_re_evaluating_old_tours_overestimates` |
@@ -95,7 +95,7 @@ regelfreien Kosten, gepaart je Instanz; 18/3 bedeutet 18 Kunden und 3 Lkw (60 In
 - **Weiche Zeitfenster sind eine Modellwahl:** harte Fenster wären mit Regeln massenhaft unzulässig, dann gäbe es keine Kostenmessung. Die Fenster sind an einer regelfreien Referenztour kalibriert (Sensitivität mit Regelplan:
   dieselbe Richtung, I = +12,8 ± 0,9 %).
 - **Die Tourensuche ist eine Heuristik**, kein Optimalitätsbeweis für ganze Lösungen (nur für die Fahrpläne je Route, an Mini-Instanzen gegen Brute-Force). Einzelne Instanzen können deutlich danebenliegen (Live-Größe, zwei Such-Seeds: Maximum des Unterschieds von I 16,2 % der regelfreien Kosten);
-  Aussagen tragen die Mittelwerte über 40 bis 60 Instanzen.
+  Aussagen belegen die Mittelwerte über 40 bis 60 Instanzen.
 - **Ausgeschlossene Lagen:** bei 300 km Reichweite sind nur gut erreichbare Lagen zulässig (in der Vorab-Messung etwa 20 % der Zufallslagen mit 18 Kunden, nicht Teil der CI-Tests); die Messreihe wertet dort 28 von 40 (18/3) bzw. 29 von 40 Instanzen (10/2) aus, die
   ausgeschlossenen sind die schwierigeren Lagen. Die 300-km-Zahlen sind eher zu günstig.
 - **Live-Instanz und Messreihe haben verschiedene Größen** (6 bis 12 Kunden mit 2 Lkw gegen 10/2 und 18/3): jede Zahl trägt ihre Größe. Andere Kundenzahlen als 10 (und 12 mit Standardstufen) haben keine eigene Messreihe.
